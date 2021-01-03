@@ -2,6 +2,8 @@ import os
 import json
 import googleapiclient.discovery
 
+from nlp_analysis import analyze_comments
+
 # fetch comments from youtube video given its id
 # TODO: add next_page_token as optional arg
 def list_comments(id):
@@ -26,8 +28,17 @@ def list_comments(id):
 
     return(response)
 
-# comments = list_comments("Y4W4Yup6_A8")
-# next_page_token = comments.get('nextPageToken', None)
+def getText(c):
+    # TODO: weigh decision of using textOriginal vs. textDisplay
+    return(c["snippet"]["topLevelComment"]["snippet"]["textOriginal"])
 
-# print(next_page_token)
-# print(len(comments['items']))
+def comments_analysis(url):
+    # TODO: add string methods to pull video id out of url
+    # TODO: remove hardcoded video id
+    # TODO: accept nextPageToken, pass into into list_comments, and pass it back to user
+    comments_res = list_comments("Y4W4Yup6_A8")
+
+    comments = [getText(i) for i in comments_res["items"]]
+    next_page_token = comments_res.get('nextPageToken', None)
+
+    return analyze_comments(comments)

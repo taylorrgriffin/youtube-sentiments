@@ -1,4 +1,4 @@
-import re, string, random
+import re, string, random, pickle
 from nltk.tag import pos_tag
 from nltk.tokenize import word_tokenize
 from nltk.stem.wordnet import WordNetLemmatizer
@@ -92,6 +92,11 @@ if __name__ == "__main__":
     # train classifier model
     classifier = NaiveBayesClassifier.train(train_data)
 
+    # test classifier, ensure accuracy is reasonable
     print("Accuracy is:", classify.accuracy(classifier, test_data))
     print(classifier.show_most_informative_features(10))
 
+    # save classifier as pickle file
+    save_classifier = open("classifier.pickle", "wb")
+    pickle.dump(classifier, save_classifier)
+    save_classifier.close()
