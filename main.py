@@ -31,16 +31,16 @@ def getText(c):
     # TODO: weigh decision of using textOriginal vs. textDisplay
     return(c["snippet"]["topLevelComment"]["snippet"]["textOriginal"])
 
-def comments_analysis(url, page_token):
+def comments_analysis(id, page_token):
     # regex credit: github user gustavoja, https://regex101.com/r/7CxmJP/8
-    youtube_url_regex = "(?:http:|https:)*?\/\/(?:www\.|)(?:youtube\.com|m\.youtube\.com|youtu\.|youtube-nocookie\.com).*(?:v=|v%3D|v\/|(?:a|p)\/(?:a|u)\/\d.*\/|watch\?|vi(?:=|\/)|\/embed\/|oembed\?|be\/|e\/)([^&?%#\/\n]*)"
-    match = re.findall(youtube_url_regex, url)
+    # youtube_url_regex = "(?:http:|https:)*?\/\/(?:www\.|)(?:youtube\.com|m\.youtube\.com|youtu\.|youtube-nocookie\.com).*(?:v=|v%3D|v\/|(?:a|p)\/(?:a|u)\/\d.*\/|watch\?|vi(?:=|\/)|\/embed\/|oembed\?|be\/|e\/)([^&?%#\/\n]*)"
+    # match = re.findall(youtube_url_regex, url)
 
     # make sure exactly one id can be extracted from url
-    if len(match) != 1:
-        raise Exception("Invalid url format")
+    # if len(match) != 1:
+    #     raise Exception("Invalid url format")
 
-    id = match[0]
+    # id = match[0]
     
     # pull comments from video
     comments_res = list_comments(id, page_token)
