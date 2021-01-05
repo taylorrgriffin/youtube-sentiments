@@ -1,9 +1,26 @@
-# Youtube Sentiment Analysis
+# Setup
 
-TODO: generate requirements.txt
+## Install dependencies
+````
+python3 -m venv /path/to/new/virtual/environment
+source venv/bin/activate
+pip install -r requirements.txt
+````
 
-TODO: add virtual env setup instructions
+## Train model
+````
+python nlp_setup.py
+python nlp_train.py
+````
 
-TODO: add nlp setup instructions
+## Start service
+````
+export FLASK_APP=server.py
+flask run
+````
 
-TODO: add nlp training instructions
+# Usage
+
+````
+GET http://127.0.0.1:5000/analyze/<video_id>
+````
